@@ -3,12 +3,11 @@ from typing import List
 
 
 def twoSum(nums: List[int], target: int) -> List[int]:
-
     map = {}
     for i, n in enumerate(nums):
         diff = target - n
         if diff in map:
-            return [i,map.get(diff)]
+            return [i, map.get(diff)]
         map[n] = i
 
 
@@ -46,7 +45,6 @@ def climbStairs(n):
     return dp[n]
 
 
-
 def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
     left, right = 0, len(matrix[0])
     top, bottom = 0, len(matrix)
@@ -76,17 +74,20 @@ def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         left += 1
 
     return res
+
+
 def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-    list = collections.defaultdict(list)
+    list1 = collections.defaultdict(list)
 
     for s in str:
 
         count = [0] * 26
         for c in s:
             count[ord(c) - ord("a")] += 1
-        list[tuple(count)].append(s)
+        list1[tuple(count)].append(s)
 
-    return list.values()
+    return list1.values()
+
 
 def productExceptSelf(nums: List[int]) -> List[int]:
     # solve the problem using prefix and sufix where initial prefix for first array num is 1
@@ -97,28 +98,28 @@ def productExceptSelf(nums: List[int]) -> List[int]:
     result = [1] * len(nums)
     prefix = 1
     for index in range(len(nums)):
-       result[index] = prefix
-       print(result)
-       prefix = prefix * nums[index]
-
+        result[index] = prefix
+        print(result)
+        prefix = prefix * nums[index]
 
     suffix = 1
-    for index in range(len(nums)-1,-1,-1):
+    for index in range(len(nums) - 1, -1, -1):
         result[index] = suffix * result[index]
         print(result)
 
         suffix = suffix * nums[index]
     return result
 
-#list = [1,2,3,4]
-#print(productExceptSelf([1,2,3,4]))
+
+# list = [1,2,3,4]
+# print(productExceptSelf([1,2,3,4]))
 
 def exist(self, board: List[List[str]], word: str) -> bool:
     ROWS = len(board)
     COLS = len(board[0])
     visited = set()
 
-    def dfs (row: int, col: int, index: int) -> bool:
+    def dfs(row: int, col: int, index: int) -> bool:
         if index == len(word):
             return True
 
@@ -129,21 +130,21 @@ def exist(self, board: List[List[str]], word: str) -> bool:
         if (row, col) in visited:
             return False
 
-        visited.add((row,col))
+        visited.add((row, col))
 
         result = (
-            dfs(row + 1, col,index + 1) or
-            dfs(row -1, col, index + 1) or
-            dfs(row, col + 1, index + 1) or
-            dfs(row, col - 1, index + 1)
+                dfs(row + 1, col, index + 1) or
+                dfs(row - 1, col, index + 1) or
+                dfs(row, col + 1, index + 1) or
+                dfs(row, col - 1, index + 1)
         )
 
-        visited.remove((row,col))
+        visited.remove((row, col))
 
         return result
 
     for r in range(ROWS):
         for c in range(COLS):
-            if dfs(r,c,0): ## its backtracking solution
+            if dfs(r, c, 0):  ## its backtracking solution
                 return True
     return False
