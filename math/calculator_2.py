@@ -4,7 +4,8 @@ def calculate2(s: str) -> int:
         if c == " ":
             continue
         elif c.isdigit():
-            cur = (cur * 10) + int(c)  # to get the number other than single digit ...eg if 43 then first it will be 4 next for loop ...(4 * 10) + 3 = 43
+            cur = (cur * 10) + int(
+                c)  # to get the number other than single digit ...eg if 43 then first it will be 4 next for loop ...(4 * 10) + 3 = 43
 
         else:
             if op == '-':
@@ -20,7 +21,7 @@ def calculate2(s: str) -> int:
     return sum(stack)
 
 
-def calculate1(self, s: str) -> int:
+def calculate1(s: str) -> int:
     """
     1. Take 3 containers:
     num -> to store current num value only
@@ -53,8 +54,8 @@ def calculate1(self, s: str) -> int:
     sign = 1
     res = 0
     stack = []
-    for i in range(len(s)):  # iterate till last character
-        c = s[i]
+    for c in s:  # iterate till last character
+
         if c.isdigit():  # process if there is digit
             num = num * 10 + int(c)  # for consecutive digits 98 => 9x10 + 8 = 98
         elif c in '-+':  # check for - and +
@@ -71,11 +72,14 @@ def calculate1(self, s: str) -> int:
             res *= stack.pop()
             res += stack.pop()
             num = 0
-    return res + num * sign
+    return res + (num * sign)
 
 
 def main():
-    print(calculate2("3+8-32*2"))
+    n = calculate1("(1+(4+5+2)-3)+(6+8)")
+    print(n)
+
+
 
 
 if __name__ == '__main__':
